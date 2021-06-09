@@ -7,9 +7,9 @@ import org.reactivestreams.Subscription;
  * Name : DelegateSub <br/>
  * Description : Create a description.
  */
-public class DelegateSub implements Subscriber<Integer> {
+public class DelegateSub<T, R> implements Subscriber<T> {
     Subscriber sub;
-    public DelegateSub(Subscriber sub) {
+    public DelegateSub(Subscriber<? super R> sub) {
         this.sub = sub;
     }
 
@@ -19,7 +19,7 @@ public class DelegateSub implements Subscriber<Integer> {
     }
 
     @Override
-    public void onNext(Integer i) {
+    public void onNext(T i) {
         sub.onNext(i);
     }
 
